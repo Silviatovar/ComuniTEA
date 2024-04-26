@@ -1,0 +1,101 @@
+
+/* Estilos generales del header y navbar */
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #898a8c;
+}
+
+.navbar-toggler-icon {
+    color: rgb(122, 170, 225);
+}
+
+.navbar-toggler {
+    border-color: #719ece;
+}
+
+.nav-link {
+    color: #5185bc;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #5b93cf;
+}
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(210, 230, 247);/* Color de fondo */
+}
+
+h1{
+
+    text-align: center;
+    margin-top: 60px;
+    color: #1561b2;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+ h1:hover{
+    color: #3e84ce;
+ }
+
+.card-header {
+    background-color: #ffffff; /* Color de fondo del card-header */
+}
+
+.card-body {
+    background-color: #c2aeae; /* Color de fondo del card-body */
+    border: 1px solid #8d9194; /* Borde del card-body */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra del card-body */
+}
+
+/* Estilos del carousel */
+/* Estilos del carousel */
+#carouselExampleFade {
+    margin-top: 20px; /* Reduje el margen superior del carrusel */
+}
+
+.carousel-inner {
+    border-radius: 10px; /* Bordes redondeados para las imágenes del carrusel */
+}
+
+.carousel-item img {
+    height: 400px; /* Ajusté la altura de las imágenes dentro del carrusel */
+    object-fit:scale-down ; /* Hace que las imágenes se ajusten al tamaño del contenedor sin deformarse */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: #7ab5e2; /* Cambié el color de los controles del carrusel */
+}
+
+/* Estilos de la sección 1 */
+.container.my-5 {
+    background-color: #ffffff; /* Cambié el color de fondo de la sección 1 */
+    border-radius: 10px; /* Bordes redondeados para la sección 1 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para la sección 1 */
+}
+
+/* Estilos del footer */
+
+/* Cambios de color y tamaño en los enlaces */
+a {
+    color: #3082da; /* Color del enlace */
+    text-decoration: none; /* Sin subrayado */
+    transition: color 0.3s ease; /* Transición suave del color al pasar el ratón sobre el enlace */
+}
+
+a:hover {
+    color: #0f63a7; /* Cambio de color al pasar el ratón sobre el enlace */
+}
+
+footer {
+    background-color: #43474b;
+    color: #ffffff;
+    padding: 10px 0;
+    margin-top: auto; /* Hace que el margen superior del footer se ajuste automáticamente para mantenerlo abajo */
+}

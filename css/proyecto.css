@@ -1,0 +1,84 @@
+/* Estilos generales */
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    max-width: 100%;
+    height: auto;
+}
+
+.navbar-toggler-icon {
+    color: rgb(122, 170, 225);
+}
+
+.navbar-toggler {
+    border-color: #719ece;
+}
+
+.nav-link {
+    color: #5185bc;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #5b93cf;
+}
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(210, 230, 247);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+
+/* Estilos para la sección "APRENDE1" */
+.bloque1 {
+
+    color: #000000;
+    text-align: center;
+    padding: 20px;
+    
+}
+.bloque1:hover{
+    background-color: #eadbdb;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.bloque1 h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.bloque1 h3 {
+    font-size: 1.2em;
+}
+
+/* Estilos para la sección "admin" */
+.wrap {
+    margin-top: 20px; /* Ajusta el margen superior según tus preferencias */
+}
+
+.nav-tabs {
+    background-color: rgb(255, 255, 255); /* Cambia el color de fondo de las pestañas de navegación según tus preferencias */
+    border-bottom: 1px solid #dee2e6; /* Cambia el color del borde inferior según tus preferencias */
+}
+
+
+
+.nav-tabs .nav-link.active {
+    background-color: #67a1de; /* Cambia el color de fondo de la pestaña activa según tus preferencias */
+    color: #ffffff; /* Cambia el color del texto de la pestaña activa según tus preferencias */
+}
+
+/* Puedes continuar agregando más estilos según lo necesario */
+footer {
+    background-color: #43474b;
+    color: #ffffff;
+    padding: 10px 0;
+    margin-top: auto; /* Hace que el margen superior del footer se ajuste automáticamente para mantenerlo abajo */
+}

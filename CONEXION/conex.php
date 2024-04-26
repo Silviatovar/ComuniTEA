@@ -1,0 +1,15 @@
+
+
+<?php
+try {
+$mysql =
+"mysql:host=127.0.0.1;dbname=comunitea;charset=UTF8;port=3307";
+$user = "root";
+$password = "";
+$conexion = new PDO($mysql, $user, $password);
+echo"<p>Conectado a la BBDD</p>";
+} catch (PDOException $e) {
+// Mostramos mensaje en caso de error
+echo "<p>" .$e->getMessage()."</p>";
+}
+?>

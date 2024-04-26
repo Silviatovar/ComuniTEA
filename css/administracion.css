@@ -1,0 +1,86 @@
+/* Estilos generales */
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand img {
+    max-width: 100%;
+    height: auto;
+}
+
+.navbar-toggler-icon {
+    color: rgb(122, 170, 225);
+}
+
+.navbar-toggler {
+    border-color: #719ece;
+}
+
+.nav-link {
+    color: #5185bc;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #5b93cf;
+}
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: rgb(210, 230, 247);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.card-header {
+    background-color: #f4efef;
+}
+
+.card-body {
+    background-color: #ffffff;
+    border: 1px solid #d8d6d6;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px; /* Agregado para dar espacio interno */
+}
+
+/* Estilos del carousel */
+.carousel-item img {
+    height: 70%;
+    object-fit: cover;
+}
+
+/* Estilos del accordion */
+.accordion-button {
+    background-color: #007bff;
+    border: 1px solid #b4acac;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.accordion-body {
+    background-color: #d9e4f2;
+    border: 1px solid #b9bfbf;
+    border-radius: 5px;
+    padding: 10px; /* Agregado para dar espacio interno */
+}
+
+/* Estilos del footer */
+
+/* Cambios de color y tamaño en los enlaces */
+a {
+    color: #3082da;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0a497b;
+}
+footer {
+    background-color: #43474b;
+    color: #ffffff;
+    padding: 10px 0;
+    margin-top: auto; /* Hace que el margen superior del footer se ajuste automáticamente para mantenerlo abajo */
+}
