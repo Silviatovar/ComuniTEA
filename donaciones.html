@@ -11,41 +11,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Pacifico&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/login.css">
   <link rel="stylesheet" href="css/donaciones.css">
-    
+  <script defer src="./js/generalScript.js"></script>
 
 </head>
 <body>
-  <!-- INICIO HEADER -->
-  <header class="mt-5">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <a class="navbar-brand" href="pinicio.html"><img src="img/logo1.png" width="150" height="70" alt></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-3 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" data-bs-target="#modalLogin" data-bs-toggle="modal" href="login.html">Accede</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" data-bs-target="#modalReg" data-bs-toggle="modal" href="registro.html">Regístrate</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  </header>
 
   <div class="container">
-    <div class="row mt-5">
+   
+    <div class="row mt-5"> <div class="row justify-content-start">
+      <div class="col-12 col-lg-4 align-self-center text-muted" id="zonaUC">
+        <strong>Ultima conexion:</strong><span class="lastConnection "></span>
+      </div>
       <div class="col-md-6 offset-md-3">
         <div class="card">
           <div class="card-header">
             <p class="fw-bold" style="font-family: pacifico; font-size: 30px;">Haz una donación</p>
           </div>
           <div class="card-body">
-            <form action="procesar_donacion.php" method="POST">
+            <form id="formularioDonacion"  action="php/donaciones.php" method="POST">
               <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre" required>

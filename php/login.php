@@ -1,41 +1,44 @@
 <?php
-session_start();
-include 'conex.php'; // Archivo que contiene la conexión a la base de datos
+session_start(); // Iniciar sesión en PHP
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $contraseña = $_POST['contraseña'];
+// Parámetros de conexión a la base de datos
+$host = "localhost";  // usualmente localhost
+$dbname = "comunitea";
+$user = "root";
+$password = "";
 
-    // Consulta preparada para evitar inyección SQL
-    $stmt = $conexion->prepare("SELECT * FROM usuarios WHERE email = :email");
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
+// Crear conexión
+$conn = new mysqli($host, $user, $password, $dbname);
 
-    // Obtener el resultado de la consulta
-    $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    // Verificar si se encontró un usuario con ese correo electrónico
-    if ($usuario) {
-        // Verificar la contraseña
-        if (password_verify($contraseña, $usuario['contraseña'])) {
-            // Inicio de sesión exitoso
-            $_SESSION['loggedin'] = true;
-            $_SESSION['usuarioID'] = $usuario['usuarioID'];
-            $_SESSION['nombre'] = $usuario['nombre'];
-            $_SESSION['rol'] = $usuario['rol'];
-
-            // Redirigir a la página de inicio o al panel de control, dependiendo del rol
-            if ($usuario['rol'] == 'admin') {
-                header("Location: panel_admin.php");
-            } else {
-                header("Location: inicio.php");
-            }
-            exit();
-        } else {
-            echo "Contraseña incorrecta";
-        }
-    } else {
-        echo "Usuario no encontrado";
-    }
+// Comprobar conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
+
+// Recibir los datos del formulario
+$email = $_POST['email'];
+$pass = $_POST['password'];
+
+// Preparar y ejecutar la consulta
+$query = $conn->prepare("SELECT * FROM usuario WHERE email = ? AND contraseña = ?");
+$query->bind_param("ss", $email, $pass); 
+$query->execute();
+
+$result = $query->get_result();
+if ($result->num_rows == 1) {
+    $user = $result->fetch_assoc();
+
+    // Establecer variables de sesión
+    $_SESSION['usuario_id'] = $user['usuarioID'];
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['rol'] = $user['rol'];
+
+    echo "Inicio de sesión exitoso.";
+    header("Location: ../pinicio.html");
+} else {
+    echo "Error: Credenciales incorrectas.";
+}
+
+$query->close();
+$conn->close();
 ?>

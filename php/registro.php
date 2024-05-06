@@ -1,57 +1,39 @@
 <?php
+// Parámetros de conexión a la base de datos
+$host = "localhost";
+$dbname = "comunitea";
+$user = "root";
+$password = "";
 
-include 'conex.php';
+// Crear la conexión a la base de datos
+$conn = new mysqli($host, $user, $password, $dbname);
 
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    $email = isset($_POST["email"]) ? trim($_POST["email"]) : "";
-    $contraseña = isset($_POST["contraseña"]) ? trim($_POST["contraseña"]) : "";
-    $nombre = isset($_POST["nombre"]) ? trim($_POST["nombre"]) : "";
-
-  
-    if (empty($email) || empty($contraseña) || empty($nombre)) {
-        echo json_encode(["status" => "error", "message" => "Por favor, complete todos los campos del formulario."]);
-        exit;
-    }
- 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo json_encode(["status" => "error", "message" => "Por favor, ingrese un correo electrónico válido."]);
-        exit; 
-    }
-
-   
-    if (strlen($contraseña) < 6) {
-        echo json_encode(["status" => "error", "message" => "La contraseña debe tener al menos 6 caracteres."]);
-        exit; 
-    }
-
-   
-    $rol = "usuario";
-
-    try {
-      
-        $consulta = $conexion->prepare("INSERT INTO usuarios (email, contraseña, nombre, rol) VALUES (:email, :contraseña, :nombre, :rol)");
-
-      
-        $consulta->bindParam(':email', $email);
-        $consulta->bindParam(':contraseña', $contraseña);
-        $consulta->bindParam(':nombre', $nombre);
-        $consulta->bindParam(':rol', $rol);
-
-       
-        $consulta->execute();
-
-      
-        echo json_encode(["status" => "success", "message" => "Registro exitoso"]);
-
-    } catch (PDOException $e) {
-     
-        echo json_encode(["status" => "error", "message" => "Hubo un error durante el registro: " . $e->getMessage()]);
-    }
-
-} else {
-    
-    echo json_encode(["status" => "error", "message" => "Error: No se han enviado datos por POST."]);
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Conexión fallida: " . $conn->connect_error);
 }
+
+// Recibir los datos del formulario
+$nombre = $_POST['nombre'];
+$email = $_POST['email'];
+$password = $_POST['password']; // Asegúrate de cifrar la contraseña antes de almacenarla
+
+// Cifrar la contraseña
+$hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+// Insertar el nuevo usuario en la base de datos
+$sql = "INSERT INTO usuario (nombre, email, contraseña) VALUES (?, ?, ?)";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("sss", $nombre, $email, $hashed_password); // 'sss' indica que los parámetros son strings
+if ($stmt->execute()) {
+    // Registro exitoso, redirigir al usuario a la página de inicio de sesión
+    header("Location: ../login.html");
+    exit(); // Finalizar el script después de redireccionar
+} else {
+    echo "Error en el registro: " . $conn->error;
+}
+
+// Cerrar la conexión y liberar recursos
+$stmt->close();
+$conn->close();
 ?>

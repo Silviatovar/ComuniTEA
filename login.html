@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Pacifico&display=swap" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <link rel="stylesheet" href="css/login.css">
+  <script defer src="./js/generalScript.js"></script>
     
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <title>Document</title>
@@ -28,14 +30,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-3 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#modalLogin">Accede</a>
+                            <a class="nav-link active" aria-current="page" href="login.html" data-bs-toggle="modal" data-bs-target="#modalLogin">Accede</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#modalReg">Regístrate</a>
+                            <a class="nav-link active" aria-current="page" href="registro.html" data-bs-toggle="modal" data-bs-target="#modalReg">Regístrate</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" data-bs-toggle="modal" data-bs-target="#modalDonaciones">Donaciones</a>
+                            <a class="nav-link active" aria-current="page" href="donaciones.html" data-bs-toggle="modal" data-bs-target="#modalDonaciones">Donaciones</a>
                         </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -50,7 +53,7 @@
                         <p class="fw-bold" style="font-family: pacifico; font-size: 30px;">Inicio de sesión</p>
                     </div>
                     <div class="card-body">
-                        <form id="loginForm">
+                        <form id="loginForm" action="php/login.php" method="POST">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Escribe tu email">
@@ -66,9 +69,6 @@
                             </div>
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-success">Iniciar Sesión</button>
-                            </div>
-                            <div class="mb-3">
-                                <button class="btn btn-primary" type="button">Iniciar sesión con Facebook</button>
                             </div>
                         </form>
                     </div>
@@ -86,30 +86,6 @@
         </div>
     </footer>
 
-    <script>
-        $(document).ready(function(){
-            $('#loginForm').submit(function(e){
-                e.preventDefault(); // Evitar el envío del formulario normalmente
-
-                // Obtener los datos del formulario
-                var formData = $(this).serialize();
-
-                // Realizar la solicitud AJAX
-                $.ajax({
-                    url: 'login.php', // Ruta al script PHP que maneja el inicio de sesión
-                    type: 'POST',
-                    data: formData,
-                    success: function(response){
-                        // Mostrar la respuesta del servidor (puedes redirigir aquí si el inicio de sesión es exitoso)
-                        console.log(response);
-                    },
-                    error: function(xhr, status, error){
-                        // Manejar errores de la solicitud AJAX
-                        console.error(error);
-                    }
-                });
-            });
-        });
-    </script>
+ 
 </body>
 </html>

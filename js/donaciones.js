@@ -1,11 +1,12 @@
+
 $(document).ready(function(){
-    $('#registroForm').submit(function(e){
+    $('#formularioDonacion').submit(function(e){
         e.preventDefault(); // Evitar el envío del formulario tradicional
         
         var formData = $(this).serialize();
-
+  
         $.ajax({
-            url: '../php/registro.php', // Ruta al script PHP que maneja el registro
+            url: '../php/donaciones.php', // Ruta al script PHP que maneja el registro
             type: 'POST',
             data: formData,
             success: function(response){
@@ -18,4 +19,5 @@ $(document).ready(function(){
             }
         });
     });
-});
+  });
+  
