@@ -2,7 +2,7 @@ $(document).ready(function() {
     // Inicializar el DataTable para la tabla de Usuarios
     var table = $('#UsuariosTable').DataTable({
         ajax: {
-            url: 'obtenerUsuarios.php',
+            url: '../php/listaUsuarios.php',
             dataSrc: ''
         },
         columns: [

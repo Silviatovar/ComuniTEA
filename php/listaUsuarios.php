@@ -1,9 +1,9 @@
 <?php
 // Parámetros de conexión a la base de datos
 $host = "localhost";
-$dbname = "nombre_basedatos";
-$user = "usuario";
-$password = "contraseña";
+$dbname = "comunitea";
+$user = "root";
+$password = "";
 
 // Crear conexión
 $conn = new mysqli($host, $user, $password, $dbname);
@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para obtener todos los usuarios
-$sql = "SELECT * FROM usuarios";
+$sql = "SELECT * FROM usuario";
 $result = $conn->query($sql);
 
 // Crear un array para almacenar los datos

@@ -1,23 +1,22 @@
 $(document).ready(function(){
     $('#loginForm').submit(function(e){
-        e.preventDefault(); // Evitar el envío del formulario de forma tradicional
+        e.preventDefault(); 
 
-        // Obtener los datos del formulario
         var formData = $(this).serialize();
 
         // Realizar la solicitud AJAX
         $.ajax({
-            url: '../php/login.php', // Asegúrate de que esta ruta es correcta y accesible
+            url: '../php/login.php', 
             type: 'POST',
             data: formData,
             success: function(response){
                 // Mostrar la respuesta del servidor
                 console.log(response);
                 if (response.trim() === "Inicio de sesión exitoso.") {
-                    // Si el inicio de sesión es exitoso, puedes redirigir al usuario a otra página
-                    window.location.href = 'pagina_principal.html'; // Cambia esto a la página a la que deseas redirigir al usuario
+                 
+                    window.location.href = 'pagina_principal.html'; 
                 } else {
-                    // Si hay un error de inicio de sesión, muestra un mensaje de error
+             
                     alert("Error de inicio de sesión: " + response);
                 }
             },
