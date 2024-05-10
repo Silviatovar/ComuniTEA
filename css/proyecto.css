@@ -60,25 +60,25 @@ body {
 
 /* Estilos para la sección "admin" */
 .wrap {
-    margin-top: 20px; /* Ajusta el margen superior según tus preferencias */
+    margin-top: 20px;
 }
 
 .nav-tabs {
-    background-color: rgb(255, 255, 255); /* Cambia el color de fondo de las pestañas de navegación según tus preferencias */
-    border-bottom: 1px solid #dee2e6; /* Cambia el color del borde inferior según tus preferencias */
+    background-color: rgb(255, 255, 255); 
+    border-bottom: 1px solid #dee2e6; 
 }
 
 
 
 .nav-tabs .nav-link.active {
-    background-color: #67a1de; /* Cambia el color de fondo de la pestaña activa según tus preferencias */
-    color: #ffffff; /* Cambia el color del texto de la pestaña activa según tus preferencias */
+    background-color: #67a1de; 
+    color: #ffffff; 
 }
 
-/* Puedes continuar agregando más estilos según lo necesario */
+
 footer {
     background-color: #43474b;
     color: #ffffff;
     padding: 10px 0;
-    margin-top: auto; /* Hace que el margen superior del footer se ajuste automáticamente para mantenerlo abajo */
+    margin-top: auto;
 }

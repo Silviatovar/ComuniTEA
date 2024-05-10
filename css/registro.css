@@ -87,5 +87,5 @@ footer {
     background-color: #43474b;
     color: #ffffff;
     padding: 10px 0;
-    margin-top: auto; /* Hace que el margen superior del footer se ajuste automáticamente para mantenerlo abajo */
+    margin-top: auto; 
 }

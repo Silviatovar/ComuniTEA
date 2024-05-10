@@ -32,57 +32,57 @@ body {
 
 
 .card-header {
-    background-color: #eae7e7; /* Color de fondo del card-header */
+    background-color: #eae7e7; 
 }
 
 .card-body {
-    background-color: #f7f7f7; /* Color de fondo del card-body */
-    border: 1px solid #ffffff; /* Borde del card-body */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra del card-body */
+    background-color: #f7f7f7; 
+    border: 1px solid #ffffff; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos del carousel */
 .carousel-item img {
-    height: 70%; /* Altura de las imágenes en el carousel */
-    object-fit: cover; /* Hace que las imágenes se ajusten al tamaño del contenedor sin deformarse */
+    height: 70%; 
+    object-fit: cover; 
 }
 
 /* Estilos del accordion */
 .accordion-button {
-    background-color: #007bff; /* Color de fondo del botón del accordion */
-    border: 1px solid #b4acac; /* Borde del botón del accordion */
-    border-radius: 5px; /* Bordes redondeados */
-    color: #ffffff; /* Color del texto del botón del accordion */
+    background-color: #007bff; 
+    border: 1px solid #b4acac; 
+    border-radius: 5px; 
+    color: #ffffff; 
 }
 
 .accordion-body {
-    background-color: #d9e4f2; /* Color de fondo del contenido del accordion */
-    border: 1px solid #b9bfbf; /* Borde del contenido del accordion */
-    border-radius: 5px; /* Bordes redondeados */
+    background-color: #d9e4f2; 
+    border: 1px solid #b9bfbf;
+    border-radius: 5px; 
 }
 
 /* Estilos del footer */
 footer {
-    margin-top: 20px; /* Ajuste de margen superior para evitar que el contenido se solape con el footer */
-    background-color: #43474b; /* Color de fondo del footer */
-    color: #ffffff; /* Color del texto del footer */
-    padding: 10px 0; /* Espaciado interno del footer */
+    margin-top: 20px; 
+    background-color: #43474b; 
+    color: #ffffff; 
+    padding: 10px 0; 
 }
 
 /* Cambios de color y tamaño en los enlaces */
 a {
-    color: #3082da; /* Color del enlace */
-    text-decoration: none; /* Sin subrayado */
-    transition: color 0.3s ease; /* Transición suave del color al pasar el ratón sobre el enlace */
+    color: #3082da; 
+    text-decoration: none; 
+    transition: color 0.3s ease; 
 }
 
 a:hover {
-    color: #0a497b; /* Cambio de color al pasar el ratón sobre el enlace */
+    color: #0a497b; 
 }
 footer {
     background-color: #43474b;
     color: #ffffff;
     padding: 10px 0;
-    margin-top: auto; /* Hace que el margen superior del footer se ajuste automáticamente para mantenerlo abajo */
+    margin-top: auto; 
 }

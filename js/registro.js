@@ -1,19 +1,17 @@
 $(document).ready(function(){
     $('#registroForm').submit(function(e){
-        e.preventDefault(); // Evitar el envío del formulario tradicional
+        e.preventDefault(); 
         
         var formData = $(this).serialize();
 
         $.ajax({
-            url: '../php/registro.php', // Ruta al script PHP que maneja el registro
+            url: '../php/registro.php', 
             type: 'POST',
             data: formData,
             success: function(response){
-                // Mostrar la respuesta del servidor
                 console.log(response);
             },
             error: function(xhr, status, error){
-                // Manejar errores de la solicitud AJAX
                 console.error(error);
             }
         });

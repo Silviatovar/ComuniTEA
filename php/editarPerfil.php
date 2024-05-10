@@ -7,20 +7,16 @@ $dbname = "comunitea";
 $user = "root";
 $password = "";
 
-// Crear conexión
 $conn = new mysqli($host, $user, $password, $dbname);
 
-// Comprobar conexión
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Recibir los datos del formulario
 $username = $_POST['username'];
 $email = $_POST['email'];
 $pass = $_POST['password'];
 
-// Actualizar los datos en la base de datos
 $stmt = $conn->prepare("UPDATE usuario SET nombre = ?, email = ?, contraseña = ? WHERE usuarioID = ?");
 $stmt->bind_param("sssi", $username, $email, $pass, $_SESSION['usuario_id']);
 
@@ -33,4 +29,3 @@ if ($stmt->execute()) {
 
 $stmt->close();
 $conn->close();
-?>

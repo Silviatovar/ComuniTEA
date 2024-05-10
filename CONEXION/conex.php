@@ -9,7 +9,7 @@ $password = "";
 $conexion = new PDO($mysql, $user, $password);
 echo"<p>Conectado a la BBDD</p>";
 } catch (PDOException $e) {
-// Mostramos mensaje en caso de error
+
 echo "<p>" .$e->getMessage()."</p>";
 }
 ?>

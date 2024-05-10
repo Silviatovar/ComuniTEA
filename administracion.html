@@ -16,19 +16,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Pacifico&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/administracion.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.2/dist/css/bootstrap.min.css"
-        integrity="sha384-rQ1rfoH96C12jOjNkk5FV1YnufIR0Li1+Wz8Fpzv2RZIq2Idt4LpPw5g5J3I8qDj" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.2/dist/js/bootstrap.min.js"
-        integrity="sha384-pzjw8BCWJoYm7AwxwRzf3zODHO5uOV5Qbbrt8qRT5mGGZS06xjUDD1uLAgJQlDZD"
-        crossorigin="anonymous"></script>
-    <!-- import dataTable -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
-    <script defer src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-    <script defer src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
     <script defer src="./js/generalScript.js"></script>
     <script defer src="./css/estilo.css"></script>
     <title>Administración</title>
@@ -39,51 +26,34 @@
     <!-- INICIO HEADER -->
     <header class="mt-5">
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="pinicio.html">
-                    <img src="img/logo1.png" alt="logo" width="150" height="70">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="dropdown">
-                        <a class="btn bg-light dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Silvia
-                        </a>
-                        <!--Menú despegable -->
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li>
-                                <a class="dropdown-item" href="administracion.html">
-                                    <i class="fi fi-sr-graduation-cap"></i>
-                                    Administrar 
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="editarPerfil.html">
-                                    <i class="fi fi-sr-user"></i>
-                                    Editar
-                                    perfil
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="pinicio.html">
-                                    <i class="fi fi-br-exit"></i>
-                                    salir
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link active"
-                                    href="donaciones.html">Donaciones</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+          <div class="container">
+            <a class="navbar-brand" href="#"><img src="img/logo1.png" width="150" height="70" alt></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="login.html">Accede</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="registro.html">Registrate</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="proyecto.html">COMUNITEA APP</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="donaciones.html">Donaciones</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="editarPerfil.html">Editar perfil</a>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="administracion.html">Administracion</a>
+            </div>
+          </div>
         </nav>
-    </header>
+      </header>
 
     <body>
         <div class="container mt-5">
@@ -104,7 +74,7 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="secciones-tab" data-bs-toggle="tab" data-bs-target="#secciones"
-                                type="button" role="tab" aria-controls="secciones" aria-selected="false">Secciones</button>
+                                type="button" role="tab" aria-controls="secciones" aria-selected="false">Categorias</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="donaciones-tab" data-bs-toggle="tab" data-bs-target="#donaciones"
@@ -119,11 +89,11 @@
                             <table id="UsuariosTable" class="table">
                                 <thead>
                                     <tr>
-                                        <th>Usuario</th>
-                                        <th>Nombre</th>
-                                        <th>Email</th>
-                                        <th>Rol</th>
-                                        <th>Acciones</th>
+                                        <th>usuarioID</th>
+                                        <th>nombre</th>
+                                        <th>email</th>
+                                        <th>rol</th>
+                                        <th>acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -139,7 +109,7 @@
                                         <th>Nombre</th>
                                         <th>Audio</th>
                                         <th>Imagen</th>
-                                        <th>Sección</th>
+                                        <th>Categoria</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
@@ -182,11 +152,18 @@
                     </div>
                 </div>
             
+          
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.2/dist/js/bootstrap.min.js"></script>
                 <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
                 <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+                <script src="./js/generalScript.js" defer></script>
                 <script src="./js/listaUsuarios.js"></script>
+                <script src="./js/listaCategorias.js"></script>
+                <script src="./js/listaPictogramas.js"></script>
+                <script src="./js/donaciones.js"></script>
+
             </body>
-            
             </html>
