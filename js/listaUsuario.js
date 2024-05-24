@@ -4,6 +4,7 @@ function TablaUsuarios() {
         type: 'POST',
         url: './php/listaUsuarios.php',
         dataType: 'json',
+        data: {},
         success: function (data) {
             // Limpiar la tabla antes de cargar nuevos datos
             if ($('#UsuariosTable').length) {

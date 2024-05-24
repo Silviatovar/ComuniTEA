@@ -52,7 +52,9 @@ $sql_pictograma = "
         categoriaID INT,
         PRIMARY KEY (pictogramaID),
         KEY categoriaID (categoriaID),
-        CONSTRAINT pictograma_fk_1 FOREIGN KEY (categoriaID) REFERENCES categoria(categoriaID) ON DELETE SET NULL
+        CONSTRAINT pictograma_fk_1 FOREIGN KEY (categoriaID) REFERENCES 
+        CONSTRAINT pictograma_fk_1 FOREIGN KEY (usuarioID) REFERENCES usuario
+        categoria(categoriaID) ON DELETE SET NULL
     );
 ";
 

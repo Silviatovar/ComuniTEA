@@ -13,8 +13,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Pacifico&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/proyecto.css">
+  <link rel="stylesheet" href="css/proyecto.css">  <script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./js/generalScript.js"></script>
+  <script defer src="./js/addPictogramas.js"></script>
+  <script defer src="./js/picUsuarios.js"></script>
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <title>Document</title>
@@ -68,6 +71,7 @@
         buttons.forEach(button => {
           button.addEventListener('click', () => {
             const palabra = button.getAttribute('data-palabra');
+            console.log(palabra)
             hablar(palabra);
           });
         });
@@ -121,6 +125,11 @@
               <button class="nav-link" id="colores-tab" data-bs-toggle="tab" data-bs-target="#colores" type="button"
                 role="tab" aria-controls="colores" aria-selected="false"> <img src="img/colores.png" width="30"></img>
                 Colores</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pictogramas-tab" data-bs-toggle="tab" data-bs-target="#pictogramas" type="button"
+                role="tab" aria-controls="colores" aria-selected="false"> <img src="img/colores.png" width="30"></img>
+                Mis pictogramas</button>
             </li>
 
           </ul>
@@ -695,7 +704,53 @@
             </div>
           </div>
           <!--FIN COLORES-->
+
+             <!-- INICIO COLORES -->
+             <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="pictogramas" role="tabpanel" aria-labelledby="pictogramas-tab">
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPictogramas">
+               Añadir pictogramas
+                </button>
+          
+                <div class="container mt-4">
+                  <div class="row" id="pictoUsuario">
+                    
+                  </div>
   </section>
+
+  
+  <form class="modal fade" id="addPictogramas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir Nuevo Elemento</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">        
+            <div class="mb-3">
+              <label for="itemName" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="itemName" required value="hola">
+            </div>
+            <div class="mb-3">
+              <label for="itemName" class="form-label">Texto a reproducir</label>
+              <input type="text" class="form-control" id="audio" name="audio" required value="hola">
+            </div>
+            
+            <div class="mb-3">
+              <label for="itemImage" class="form-label">Imagen</label>
+              <input class="form-control" type="file" id="imagen" name="imagen" accept="image/*" required>
+            </div>          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+
   </div>
   <!--INICIO FOOTER-->
   <footer class="container-fluid bg-dark text-lefts text-light px-5 pt-2">
@@ -705,6 +760,15 @@
     </div>
   </footer>
   <!--FIN FOOTER-->
+
+  <script>
+    $(document).on('click', '.boton-palabra', function(element) {
+      const utterance = new SpeechSynthesisUtterance(element.currentTarget.attributes['data-palabra'].value);
+          window.speechSynthesis.speak(utterance);
+          
+    console.log('TEST', element);
+  }) ;
+  </script>
 </body>
 
 </html>
