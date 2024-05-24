@@ -18,18 +18,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $monto = $_POST["monto"];
     $mensaje = $_POST["mensaje"];
 
-    $sql = "INSERT INTO donacion (nombre, email, monto, mensaje, fecha) VALUES (?, ?, ?, ?, NOW())";
-    $stmt = $conn->prepare($sql);
+    // Buscar el usuario por correo electrónico
+    $sql_buscar_usuario = "SELECT usuarioID FROM usuario WHERE email = ?";
+    $stmt_buscar_usuario = $conn->prepare($sql_buscar_usuario);
 
-    if (!$stmt) {
-        die("Error al preparar la consulta: " . $conn->error);
+    if (!$stmt_buscar_usuario) {
+        die("Error al preparar la consulta de búsqueda de usuario: " . $conn->error);
     }
 
-    $stmt->bind_param("ssds", $nombre, $email, $monto, $mensaje);
+    $stmt_buscar_usuario->bind_param("s", $email);
+    $stmt_buscar_usuario->execute();
+    $stmt_buscar_usuario->store_result();
 
-    if (!$stmt->execute()) {
-        die("Error al ejecutar la consulta: " . $stmt->error);
+    if ($stmt_buscar_usuario->num_rows > 0) {
+        // El usuario existe, obtener su usuarioID
+        $stmt_buscar_usuario->bind_result($usuarioID);
+        $stmt_buscar_usuario->fetch();
+    } else {
+        // El usuario no existe, usar el usuarioID predeterminado (0)
+        $usuarioID = 0; // Usuario por defecto
     }
+
+    $stmt_buscar_usuario->close();
+
+    // Insertar la donación con el usuarioID
+    $sql_insertar_donacion = "INSERT INTO donacion (usuarioID, nombre, email, monto, mensaje, fecha) VALUES (?, ?, ?, ?, ?, NOW())";
+    $stmt_insertar_donacion = $conn->prepare($sql_insertar_donacion);
+
+    if (!$stmt_insertar_donacion) {
+        die("Error al preparar la consulta de inserción de donación: " . $conn->error);
+    }
+
+    $stmt_insertar_donacion->bind_param("issds", $usuarioID, $nombre, $email, $monto, $mensaje);
+
+    if (!$stmt_insertar_donacion->execute()) {
+        die("Error al ejecutar la consulta de inserción de donación: " . $stmt_insertar_donacion->error);
+    }
+
+    $stmt_insertar_donacion->close();
 
     header("Location: ../pinicio.html");
     exit();
@@ -39,3 +65,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
+?>

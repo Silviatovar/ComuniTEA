@@ -25,6 +25,10 @@ function populateTable(usuarios) {
         table.row.add(usuarios_row).draw();
     });
 }
+
+$(myTab).change(function () {
+    dataTablePictogramas();
+});
     $('document').ready(function () {
         table = $('#PictogramasTable').DataTable({
             "responsive": true,

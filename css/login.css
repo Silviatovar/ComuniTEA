@@ -24,65 +24,75 @@
 .nav-link:hover {
     color: #5b93cf;
 }
-body {
 
+body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: rgb(210, 230, 247);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
-
-.card-header {
-    background-color: #eae7e7; 
+.container {
+    max-width: 800px;
 }
 
-.card-body {
-    background-color: #f7f7f7; 
-    border: 1px solid #ffffff; 
+/* Estilos del card */
+.card {
+    margin-top: 2rem;
+    border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos del carousel */
-.carousel-item img {
-    height: 70%; 
-    object-fit: cover; 
+.card-header {
+  
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.card-title {
+    color: #007bff;
 }
 
-/* Estilos del accordion */
-.accordion-button {
-    background-color: #007bff; 
-    border: 1px solid #b4acac; 
-    border-radius: 5px; 
-    color: #ffffff; 
+.card-body {
+    padding: 2rem;
+}
+.card-footer {
+    background-color: #f8f9fa;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
-.accordion-body {
-    background-color: #d9e4f2; 
-    border: 1px solid #b9bfbf;
-    border-radius: 5px; 
+/* Estilos del formulario */
+.form-label {
+    font-weight: bold;
+}
+
+.form-control {
+    margin-bottom: 1rem;
+}
+
+/* Estilos del checkbox */
+.form-check-input {
+    margin-right: 0.5rem;
+}
+
+/* Estilos del botón */
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
 }
 
 /* Estilos del footer */
 footer {
-    margin-top: 20px; 
-    background-color: #43474b; 
-    color: #ffffff; 
-    padding: 10px 0; 
-}
-
-/* Cambios de color y tamaño en los enlaces */
-a {
-    color: #3082da; 
-    text-decoration: none; 
-    transition: color 0.3s ease; 
-}
-
-a:hover {
-    color: #0a497b; 
-}
-footer {
-    background-color: #43474b;
+    margin-top: auto;
+    background-color: #343a40;
     color: #ffffff;
     padding: 10px 0;
-    margin-top: auto; 
 }
