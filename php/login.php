@@ -32,6 +32,7 @@ if ($result->num_rows == 1) {
 
     echo "Inicio de sesión exitoso.";
     header("Location: ../pinicio.html");
+    
 } else {
     echo "Error: Credenciales incorrectas.";
 }

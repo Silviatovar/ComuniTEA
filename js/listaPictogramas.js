@@ -1,59 +1,72 @@
 
-var table = "";
-
-function dataTablePictogramas() {
+                
+function TablaPictogramas() {
     $.ajax({
-        method: "POST",
-        url: "../php/listaPictogramas.php",
-        data: {}
-    }).done(function (msg) {
-        let usuarios = JSON.parse(msg);
-        populateTable(usuarios);
-    });
-}
-function populateTable(usuarios) {
-    table.clear().draw();
-    $.each(usuarios, function () {
-        var usuarios_row = {
-            "nombre": this.etiqueta,
-            "categoriaID": this.categoriaID,
-            "imagenURL": this.imagenURL,
-            "audioURL": this.audioURL,
-            "Acciones": '<button type="button" class="btn btn-primary editar" data-toggle="modal" data-target="#editarUsuarioModal">Editar</button>' +
-                '<button type="button" class="btn btn-danger eliminar">Eliminar</button>'
-        };
-        table.row.add(usuarios_row).draw();
+        type: 'POST',
+        url: './php/listaPictogramas.php',
+        dataType: 'json',
+        success: function (data) {
+            // Limpiar la tabla antes de cargar nuevos datos
+            if ($('#PictogramasTable').length) {
+                $('#PictogramasTable').DataTable().clear().destroy();
+            }
+
+            // Construir la tabla utilizando DataTables
+            $('#PictogramasTable').DataTable({
+                "data": data,
+                "responsive": true,
+                "columns": [
+
+                    { "data": "imagenURL" },
+                    { "data": "nombre" },
+                    { "data": "audioURL" },
+                    { "data": "categoriaID" },
+                    {
+                        "data": "acciones",
+                        "render": function (data, type, row) {
+                            return '<button type="button" class="btn btn-danger eliminarPictoBtn" data-picto-id="' + row.pictogramaID + '">Eliminar</button>';
+                
+                        }
+                    }
+                ]
+            });
+        },
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
+            alert('Error al cargar la tabla de categorías. Detalles: ' + xhr.responseText);
+        }
     });
 }
 
-$(myTab).change(function () {
-    dataTablePictogramas();
+// Llamar a la función cuando la página esté lista
+$(document).ready(function () {
+    TablaPictogramas();
 });
-    $('document').ready(function () {
-        table = $('#PictogramasTable').DataTable({
-            "responsive": true,
-            "columns": [
-                { "data": "nombre" },
-                { "data": "categoriaID" },
-                { "data": "imagenURL" },
-                { "data": "audioURL" },
-                { "data": "rol" },
-                {
-                    "data": "acciones",
-                    "render": function (data, type, row) {
-                        return '<button type="button" class="btn btn-primary editar" data-toggle="modal" data-target="#editarUsuarioModal">Editar</button>' +
-                            '<button type="button" class="btn btn-danger eliminar">Eliminar</button>';
-                    }
-                }
-            ],
-            "lengthMenu": [
-                [10, 25, 50, -1],
-                [10, 25, 50, "All"]
-            ],
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
+
+$(document).ready(function () {
+    // Función para eliminar un usuario
+    function eliminarPicto(pictogramaID) {
+        $.ajax({
+            type: "POST",
+            url: "./php/administracion/eliminarPictograma.php",
+            data: { pictogramaID: pictogramaID },
+            success: function (response) {
+                alert(response);
+                // Volver a cargar la DataTable después de eliminar el usuario
+                TablaPictogramas();
             },
-            dom: 'lBfrtip',
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+                alert("Error al eliminar el pictograma. Detalles: " + xhr.responseText);
+            }
         });
+    }
+
+    // Escuchar clics en botones "Eliminar" en todas las DataTables
+    $('body').on('click', '.eliminarPictoBtn', function () {
+        var pictogramaID = $(this).data('picto-id');
+        eliminarPicto(pictogramaID);
     });
-    
+});
+
+

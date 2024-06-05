@@ -17,43 +17,62 @@
   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./js/generalScript.js"></script>
   <script defer src="./js/addPictogramas.js"></script>
+  <script defer src="./js/addCategorias.js"></script>
   <script defer src="./js/picUsuarios.js"></script>
+  <script defer src="./js/picto.js"></script>
+  <script src="include-nav.js" defer></script>
 
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <title>Document</title>
 </head>
-
-<body class="d-flex flex-column min-vh-100">
-  <header class="mt-5">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+<header class="mt-5">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="#"><img src="img/logo1.png" width="150" height="70" alt></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-3 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="login.html">Accede</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="registro.html">Registrate</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="proyecto.html">COMUNITEA APP</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="donaciones.html">Donaciones</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="editarPerfil.html">Editar perfil</a>
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="administracion.html">Administracion</a>
-        </div>
+          <a class="navbar-brand" href="#"><img src="img/logo1.png" width="150" height="70" alt></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-3 mb-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="pinicio.html">Sobre Nosotros</a>
+                  <li class="nav-item" rol="invitado">
+                      <a class="nav-link active" aria-current="page" href="login.html">Accede</a>
+                  </li>
+                  <li class="nav-item" rol="invitado">
+                      <a class="nav-link active" aria-current="page" href="registro.html">Registrate</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="proyecto.html">APP COMUNITEA</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="donaciones.html">Donaciones</a>
+                  </li>
+                  <li class="nav-item" rol="usuario">
+                      <a class="nav-link active" aria-current="page" href="editarPerfil.html">Editar perfil</a>
+                  <li class="nav-item">
+                      <a class="nav-link active" rol="admin" aria-current="page"
+                          href="administracion.html">Administracion</a>
+                  </li>
+                  <li class="nav-item" rol="usuario">
+                      <a class="nav-link active" aria-current="page" href="tickets.html">Notificaciones</a>
+                  <li class="nav-item">
+                      <a class="nav-link active " aria-current="page" href="./php/logout.php">Cerrar Sesion</a>
+                  </li>
+              </ul>
+
+          </div>
       </div>
-    </nav>
-  </header>
+  </nav>
+
+
+
+
+</header>
+<body class="d-flex flex-column min-vh-100">
+
   <!-- INICIO APRENDE1-->
   <div class="bloque1 d-flex p-2 flex-column  mb-3 justify-content-center align-items-center pt-5 pb-5">
     <br>
@@ -131,8 +150,47 @@
                 role="tab" aria-controls="colores" aria-selected="false"> <img src="img/colores.png" width="30"></img>
                 Mis pictogramas</button>
             </li>
-
+           
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="add-categoria-tab" data-bs-toggle="modal" data-bs-target="#addCategoriasModal"
+                type="button" role="tab" aria-controls="addCategorias" aria-selected="false"> 
+                <img src="img/colores.png" width="30"> Añadir Categoria
+              </button>
+            </li>
           </ul>
+  
+          <div class="container mt-4">
+            <div class="row" id="categoriaUsuario"></div>
+          </div>
+  
+          <!-- Modal para añadir categorías -->
+          <div class="modal fade" id="addCategoriasModal" tabindex="-1" aria-labelledby="addCategoriasLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="addCategoriasLabel">Añadir Nueva Categoria</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form id="addCategoriaForm">
+                    <div class="mb-3">
+                      <label for="categoriaNombre" class="form-label">Nombre de la Categoria</label>
+                      <input type="text" class="form-control" id="categoriaNombre" required>
+                      <label for="categoriaDescripcion" class="form-label">Descripción de la Categoria</label>
+                      <input type="text" class="form-control" id="categoriaDescripcion" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Añadir</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Fin del modal -->
+  
+        </div>
+      </div>
+    </div>
+  </section>
 
 
           <!-- FIN GEBERAL-->
@@ -719,9 +777,35 @@
                   </div>
   </section>
 
+  <!-- <form class="modal fade" id="addCategorias" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir Nueva Categoria</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">        
+            <div class="mb-3">
+              <label for="itemName" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombreC" name="itemName" >
+            </div>   
+            <div class="mb-3">
+              <label for="itemName" class="form-label">Descripción de la categoria</label>
+              <input type="text" class="form-control" id="descripcion" name="itemName">
+            </div>     
+                 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </div>
+      </div>
+    </div>
+  </form> -->
   
   <form class="modal fade" id="addPictogramas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
+      <p class="text-danger">Tenga en cuenta que los pictogramas subidos serán revisados por un administrador,No se permiten imagenes con contenido sensible y/o violento en dicho caso se eliminaran y no podra hacer uso de ellos </p>
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir Nuevo Elemento</h1>
@@ -739,6 +823,8 @@
             
             <div class="mb-3">
               <label for="itemImage" class="form-label">Imagen</label>
+              <p class="text-muted text-danger ">Tamaño maximo de archivo 5Mb</p>
+
               <input class="form-control" type="file" id="imagen" name="imagen" accept="image/*" required>
             </div>          
         </div>

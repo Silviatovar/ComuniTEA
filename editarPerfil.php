@@ -28,41 +28,9 @@
     <script defer src="./js/generalScript.js"></script>
 
     <link rel="stylesheet" href="css/editarPerfil.css">
+    <script src="include-nav.js" defer></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
-<header class="mt-5">
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#"><img src="img/logo1.png" width="150" height="70" alt></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-3 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="login.html">Accede</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="registro.html">Registrate</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="proyecto.html">COMUNITEA APP</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="donaciones.html">Donaciones</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="editarPerfil.html">Editar perfil</a>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="administracion.html">Administracion</a>
-            </div>
-        </div>
-    </nav>
-</header>
-
-
     <!-- INICIO FORMULARIO DE EDICIÓN DE PERFIL -->
     <div class="container mt-5">
         <div class="row justify-content-start">

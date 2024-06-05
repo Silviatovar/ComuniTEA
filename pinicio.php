@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,43 +29,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   
     <link rel="stylesheet" href="css/estilo.css">
+    <?php include 'nav.php'; ?>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-
-    <!-- INICIO HEADER -->
-    <header class="mt-5">
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-                <a class="navbar-brand" href="#"><img src="img/logo1.png" width="150" height="70" alt></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-3 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="login.html">Accede</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="registro.html">Registrate</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="proyecto.html">COMUNITEA APP</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="donaciones.html">Donaciones</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="editarPerfil.html">Editar perfil</a>
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="administracion.html">Administracion</a>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <!--FIN -->
     <h1> ¡UNETE A COMUNITEA!</h1>
 
     <div id="carouselExampleFade" class="carousel slide carousel-fade " data-ride="carousel">

@@ -21,11 +21,10 @@ function TablaDonaciones() {
                     { data: "fecha" },
                     { data: "mensaje" },
                     {
-                        data: null,
-                        title: 'Acciones',
-                        render: function (data, type, row) {
-                            return '<button onclick="aceptarDonacion()">Aceptar</button>' +
-                                '<button onclick="confirmarEliminar()">Eliminar</button>';
+                        "data": "acciones",
+                            "render": function (data, type, row) {
+                                return '<button type="button" class="btn btn-danger eliminarDonacionBtn" data-donacion-id="' + row.donacionID + '">Cancelar</button>';
+                    
                         }
                     }
                 ]
@@ -41,4 +40,30 @@ function TablaDonaciones() {
 // Llamar a la función cuando la página esté lista
 $(document).ready(function () {
     TablaDonaciones();
+});
+
+$(document).ready(function () {
+    // Función para eliminar un usuario
+    function eliminarDonacion(donacionID) {-
+        $.ajax({
+            type: "POST",
+            url: "./php/administracion/cancelarDonacion.php",
+            data: { donacionID: donacionID },
+            success: function (response) {
+                alert(response);
+                // Volver a cargar la DataTable después de eliminar el usuario
+                TablaDonaciones();
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+                alert("Error al eliminar usuario. Detalles: " + xhr.responseText);
+            }
+        });
+    }
+
+    // Escuchar clics en botones "Eliminar" en todas las DataTables
+    $('body').on('click', '.eliminarDonacionBtn', function () {
+        var donacionID = $(this).data('donacion-id');
+        eliminarDonacion(donacionID);
+    });
 });

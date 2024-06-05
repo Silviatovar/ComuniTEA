@@ -29,13 +29,15 @@ if ($conn->query($sql_usuario) === TRUE) {
 }
 
 $sql_categoria = "
-    CREATE TABLE IF NOT EXISTS categoria (
-        categoriaID INT NOT NULL AUTO_INCREMENT,
-        nombre VARCHAR(255) NOT NULL,
-        descripcion TEXT,
-    PRIMARY KEY (categoriaID)
-    );
- ";
+CREATE TABLE IF NOT EXISTS categoria (
+    categoriaID INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    usuarioID INT,
+    PRIMARY KEY (categoriaID),
+    CONSTRAINT usuario_fk_1 FOREIGN KEY (usuarioID) REFERENCES usuario(usuarioID) ON DELETE CASCADE
+);
+";
 
 if ($conn->query($sql_categoria) === TRUE) {
     echo "Tabla 'categoria' creada correctamente.<br>";
@@ -52,9 +54,7 @@ $sql_pictograma = "
         categoriaID INT,
         PRIMARY KEY (pictogramaID),
         KEY categoriaID (categoriaID),
-        CONSTRAINT pictograma_fk_1 FOREIGN KEY (categoriaID) REFERENCES 
-        CONSTRAINT pictograma_fk_1 FOREIGN KEY (usuarioID) REFERENCES usuario
-        categoria(categoriaID) ON DELETE SET NULL
+        CONSTRAINT pictograma_fk_1 FOREIGN KEY (categoriaID) REFERENCES categoria(categoriaID) ON DELETE SET NULL
     );
 ";
 
@@ -62,40 +62,6 @@ if ($conn->query($sql_pictograma) === TRUE) {
     echo "Tabla 'pictograma' creada correctamente.<br>";
 } else {
     echo "Error al crear tabla 'pictograma': " . $conn->error . "<br>";
-}
-$sql_secuencia = "
-    CREATE TABLE IF NOT EXISTS secuencia (
-        secuenciaID INT NOT NULL AUTO_INCREMENT,
-        nombre VARCHAR(255) NOT NULL,
-        usuarioID INT,
-        PRIMARY KEY (secuenciaID),
-        KEY usuarioID (usuarioID),
-        CONSTRAINT secuencia_fk_1 FOREIGN KEY (usuarioID) REFERENCES usuario(usuarioID) ON DELETE CASCADE
-    );
-";
-
-if ($conn->query($sql_secuencia) === TRUE) {
-    echo "Tabla 'secuencia' creada correctamente.<br>";
-} else {
-    echo "Error al crear tabla 'secuencia': " . $conn->error . "<br>";
-}
-
-$sql_pictograma_secuencia = "
-    CREATE TABLE IF NOT EXISTS pictograma_secuencia (
-        pictogramaID INT NOT NULL,
-        secuenciaID INT NOT NULL,
-        orden INT NOT NULL,
-        PRIMARY KEY (pictogramaID, secuenciaID),
-        KEY secuenciaID (secuenciaID),
-        CONSTRAINT pictograma_secuencia_fk_1 FOREIGN KEY (pictogramaID) REFERENCES pictograma(pictogramaID) ON DELETE CASCADE,
-        CONSTRAINT pictograma_secuencia_fk_2 FOREIGN KEY (secuenciaID) REFERENCES secuencia(secuenciaID) ON DELETE CASCADE
-    );
-";
-
-if ($conn->query($sql_pictograma_secuencia) === TRUE) {
-    echo "Tabla 'pictograma_secuencia' creada correctamente.<br>";
-} else {
-    echo "Error al crear tabla 'pictograma_secuencia': " . $conn->error . "<br>";
 }
 
 $sql_donacion = "
@@ -119,4 +85,25 @@ if ($conn->query($sql_donacion) === TRUE) {
     echo "Error al crear tabla 'donacion': " . $conn->error . "<br>";
 }
 
+$sql_tickets = "
+    CREATE TABLE IF NOT EXISTS tickets (
+        id_ticket INT NOT NULL AUTO_INCREMENT,
+        user_id INT NOT NULL,
+        open_by VARCHAR(255) NOT NULL,
+        fecha_inicio DATETIME NOT NULL,
+        mensaje VARCHAR(255) NOT NULL,
+        status VARCHAR(50) NOT NULL,
+        PRIMARY KEY (id_ticket),
+        KEY user_id (user_id),
+        CONSTRAINT tickets_fk_1 FOREIGN KEY (user_id) REFERENCES usuario(usuarioID) ON DELETE CASCADE
+    );
+";
+
+if ($conn->query($sql_tickets) === TRUE) {
+    echo "Tabla 'tickets' creada correctamente.<br>";
+} else {
+    echo "Error al crear tabla 'tickets': " . $conn->error . "<br>";
+}
+
 $conn->close();
+?>

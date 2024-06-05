@@ -1,74 +1,28 @@
-// var table = "";
-
-// function dataTableCategorias() {
-//     $.ajax({
-//         method: "POST",
-//         url: "../php/listaCategorias.php",
-//         data: {}
-//     }).done(function (msg) {
-//         let usuarios = JSON.parse(msg);
-//         populateTable(usuarios);
-//     });
-// }
-// function populateTable(usuarios) {
-//     table.clear().draw();
-//     $.each(usuarios, function () {
-//         var usuarios_row = {
-//             "nombre": this.nombre,
-//             "Acciones": '<button type="button" class="btn btn-primary editar" data-toggle="modal" data-target="#editarUsuarioModal">Editar</button>' +
-//                 '<button type="button" class="btn btn-danger eliminar">Eliminar</button>'
-//         };
-//         table.row.add(usuarios_row).draw();
-//     });
-// }
-//     $('document').ready(function () {
-//         table = $('#seccionesTable').DataTable({
-//             "responsive": true,
-//             "columns": [
-//                 { "data": "nombre" },
-//                 {
-//                     "data": "acciones",
-//                     "render": function (data, type, row) {
-//                         return '<button type="button" class="btn btn-primary editar" data-toggle="modal" data-target="#editarUsuarioModal">Editar</button>' +
-//                             '<button type="button" class="btn btn-danger eliminar">Eliminar</button>';
-//                     }
-//                 }
-//             ],
-//             "lengthMenu": [
-//                 [10, 25, 50, -1],
-//                 [10, 25, 50, "All"]
-//             ],
-//             "language": {
-//                 "url": "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-//             },
-//             dom: 'lBfrtip',
-          
-//         });
-//     });
 function TablaCategorias() {
     $.ajax({
         type: 'POST',
         url: './php/listaCategorias.php',
         dataType: 'json',
         success: function (data) {
-            // Limpiar la tabla antes de cargar nuevos datos
+          
             if ($('#seccionesTable').length) {
                 $('#seccionesTable').DataTable().clear().destroy();
             }
 
-            // Construir la tabla utilizando DataTables
             $('#seccionesTable').DataTable({
                 "data": data,
                 "responsive": true,
                 "columns": [
+                    { "data": "categoriaID" },
                     { "data": "nombre" },
                     { "data": "descripcion" },
                     {
-                        data:" acciones",
+                        data: "acciones",
                         title: '',
-                        render: function (data, type, row) {
-                            return '<button onclick="modificarCategoria(\'' + row.categoriaID + '\')">Modificar</button>' +
-                                '<button onclick="eliminarCategoria(\'' + row.categoriaID + '\')">Eliminar</button>';
+                        "render": function (data, type, row) {
+                            return '<button type="button" class="btn btn-primary editarCategoriaBtn" data-categoria-id="' + row.categoriaID + '">Editar</button>' +
+                                " | " +
+                                '<button type="button" class="btn btn-danger eliminarCategoriaBtn" data-categoria-id="' + row.categoriaID + '">Eliminar</button>';
                         }
                     }
                 ]
@@ -81,7 +35,60 @@ function TablaCategorias() {
     });
 }
 
-// Llamar a la función cuando la página esté lista
 $(document).ready(function () {
     TablaCategorias();
+});
+
+function eliminarCategoria(categoriaID) {
+    $.ajax({
+        type: "POST",
+        url: "./php/administracion/eliminarCategoria.php",
+        data: { categoriaID: categoriaID },
+        success: function (response) {
+            alert(response);
+      
+            TablaCategorias();
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+            alert("Error al eliminar la categoría. Detalles: " + xhr.responseText);
+        }
+    });
+}
+
+$('body').on('click', '.eliminarCategoriaBtn', function () {
+    var categoriaID = $(this).data('categoria-id');
+    eliminarCategoria(categoriaID);
+});
+
+// Función para editar una categoría
+$('#guardarEdicionCategoriaBtn').on('click', function (e) {
+    e.preventDefault();
+    
+    var formData = new FormData();
+    formData.append('categoriaID', $('#categoriaID').val());
+    formData.append('nuevoNombre', $('#nuevoNombreC').val());
+    formData.append('nuevaDescripcion', $('#nuevaDescripcion').val());
+    $.ajax({
+        type: "POST",
+        url: "./php/administracion/editarCategoria.php",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            alert(response);
+            $('#editarCategoriaModal').modal('hide');
+            TablaCategorias(); // Actualizar la tabla de usuarios después de editar
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText);
+            alert("Error al editar el usuario. Detalles: " + xhr.responseText);
+        }
+    });
+});
+
+$('body').on('click', '.editarCategoriaBtn', function () {
+    var categoriaID = $(this).data('categoria-id');
+    $('#categoriaID').val(categoriaID);
+    $('#editarCategoriaModal').modal('show');
 });
