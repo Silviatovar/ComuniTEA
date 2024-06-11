@@ -14,7 +14,13 @@ function TablaDonaciones() {
                 "data": data,
                 "responsive": true,
                 "columns": [
-                    { data: "usuarioID" },
+                    { 
+                        data: "usuarioID",
+                        render: function(data, type, row) {
+                            // Si el usuarioID es 0, mostrar "Invitado"
+                            return data === 0 ? "Invitado" : data;
+                        }
+                    },
                     { data: "nombre" },
                     { data: "email" },
                     { data: "monto" }, 
@@ -24,11 +30,12 @@ function TablaDonaciones() {
                         "data": "acciones",
                             "render": function (data, type, row) {
                                 return '<button type="button" class="btn btn-danger eliminarDonacionBtn" data-donacion-id="' + row.donacionID + '">Cancelar</button>';
-                    
                         }
                     }
                 ]
             });
+
+            $('#DonacionesTable_wrapper').append('<div class="alert alert-success" role="alert">Gracias por apoyar a ComuniTEA. Tu donación se ha realizado con éxito.</div>');
         },
         error: function (xhr, status, error) {
             console.log(xhr.responseText);

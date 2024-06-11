@@ -46,16 +46,19 @@ if ($conn->query($sql_categoria) === TRUE) {
 }
 
 $sql_pictograma = "
-    CREATE TABLE IF NOT EXISTS pictograma (
-        pictogramaID INT NOT NULL AUTO_INCREMENT,
-        imagenURL VARCHAR(255) NOT NULL,
-        nombre VARCHAR(255) NOT NULL,
-        audioURL VARCHAR(255),
-        categoriaID INT,
-        PRIMARY KEY (pictogramaID),
-        KEY categoriaID (categoriaID),
-        CONSTRAINT pictograma_fk_1 FOREIGN KEY (categoriaID) REFERENCES categoria(categoriaID) ON DELETE SET NULL
-    );
+CREATE TABLE IF NOT EXISTS pictograma (
+    pictogramaID INT NOT NULL AUTO_INCREMENT,
+    imagenURL VARCHAR(255) NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    audioURL VARCHAR(255),
+    categoriaID INT,
+    usuarioID INT,
+    PRIMARY KEY (pictogramaID),
+    KEY categoriaID (categoriaID),
+    KEY usuarioID (usuarioID),
+    CONSTRAINT pictograma_fk_1 FOREIGN KEY (categoriaID) REFERENCES categoria(categoriaID) ON DELETE SET NULL,
+    CONSTRAINT pictograma_fk_2 FOREIGN KEY (usuarioID) REFERENCES usuario(usuarioID) ON DELETE CASCADE
+);
 ";
 
 if ($conn->query($sql_pictograma) === TRUE) {

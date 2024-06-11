@@ -1,8 +1,13 @@
+
+<?php
+session_start();
+$usuarioID = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : '';
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
+  <?php include 'nav.php'; ?>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fontawesome.com/icons/heart?f=classic&s=solid">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -18,59 +23,14 @@
   <script defer src="./js/generalScript.js"></script>
   <script defer src="./js/addPictogramas.js"></script>
   <script defer src="./js/addCategorias.js"></script>
-  <script defer src="./js/picUsuarios.js"></script>
-  <script defer src="./js/picto.js"></script>
-  <script src="include-nav.js" defer></script>
 
-  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script defer src="./js/categoriaUsuario.js"></script>
+
   <title>Document</title>
+
+
 </head>
-<header class="mt-5">
-  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-          <a class="navbar-brand" href="#"><img src="img/logo1.png" width="150" height="70" alt></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-              aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto mb-3 mb-lg-0">
-                  <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="pinicio.html">Sobre Nosotros</a>
-                  <li class="nav-item" rol="invitado">
-                      <a class="nav-link active" aria-current="page" href="login.html">Accede</a>
-                  </li>
-                  <li class="nav-item" rol="invitado">
-                      <a class="nav-link active" aria-current="page" href="registro.html">Registrate</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="proyecto.html">APP COMUNITEA</a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="donaciones.html">Donaciones</a>
-                  </li>
-                  <li class="nav-item" rol="usuario">
-                      <a class="nav-link active" aria-current="page" href="editarPerfil.html">Editar perfil</a>
-                  <li class="nav-item">
-                      <a class="nav-link active" rol="admin" aria-current="page"
-                          href="administracion.html">Administracion</a>
-                  </li>
-                  <li class="nav-item" rol="usuario">
-                      <a class="nav-link active" aria-current="page" href="tickets.html">Notificaciones</a>
-                  <li class="nav-item">
-                      <a class="nav-link active " aria-current="page" href="./php/logout.php">Cerrar Sesion</a>
-                  </li>
-              </ul>
 
-          </div>
-      </div>
-  </nav>
-
-
-
-
-</header>
 <body class="d-flex flex-column min-vh-100">
 
   <!-- INICIO APRENDE1-->
@@ -83,31 +43,69 @@
         src="img/play.png" width="30"></img> así podrás comunicarte con los démas
     </h3>
 
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const buttons = document.querySelectorAll('.boton-palabra');
-
-        buttons.forEach(button => {
-          button.addEventListener('click', () => {
-            const palabra = button.getAttribute('data-palabra');
-            console.log(palabra)
-            hablar(palabra);
-          });
-        });
-
-        function hablar(texto) {
-          const utterance = new SpeechSynthesisUtterance(texto);
-          window.speechSynthesis.speak(utterance);
-        }
-      });
-    </script>
+    
 
   </div>
+  <style>#frase {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    
+}
+
+#frase img {
+    width: 100px;
+    height: 100px;
+    
+}
+#barra {
+  display: flex; /* Para que los pictogramas se alineen en línea */
+  align-items: center; /* Para centrar verticalmente los pictogramas */
+  justify-content: flex-start; /* Para alinear los pictogramas a la izquierda */
+  border: 2px solid black; /* Grosor y color del borde */
+  padding: 10px; /* Espaciado interior */
+  background-color: lightblue; /* Color de fondo */
+  width: 100%; /* Ancho completo del contenedor */
+  height: 100%; /* Altura fija de la barra */
+}
+
+.pictograma {
+  margin-right: 10px; /* Espacio entre los pictogramas */
+}
+</style> <div class="text-center">
+<button class="btn " id="leerFrase">
+  <i class="fas fa-play"></i>
+  <img src="img/play.gif" alt="GIF animado" width="40%" height="10%">
+
+</button>
+<button class="btn " id="borrarFrase">
+  <i class="fas fa-trash-alt"></i>
+  <img src="img/trash-bin.gif" alt="GIF animado" width="40%" height="10%">
+
+</button>
+    </div>
+  <div id=barra class="container mt-4">
+   
+    <div id='frase'>
+      
+    </div>
+  </div>
+<div class="container mt-4 ">
+<button type="button" class="btn btn-outline-success active" data-bs-toggle="modal" data-bs-target="#addCategoriasModal"
+                type="button" role="tab" aria-controls="addCategorias" aria-selected="false"> 
+               Añadir Categoria
+              </button>
+</br>
+</br>
+<button type="button" class="btn btn-outline-success active" data-bs-toggle="modal" data-bs-target="#addPictogramas">
+               Añadir pictogramas
+                </button>
+          
+</div>
   <!--Editar-->
   <section class="wrap" id="admin">
     <div class="container">
       <div class="row">
-        <div class="col-sm-8 offset-sm-2">
+        <div class="col-sm-9 offset-sm-2">
 
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -145,20 +143,7 @@
                 role="tab" aria-controls="colores" aria-selected="false"> <img src="img/colores.png" width="30"></img>
                 Colores</button>
             </li>
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="pictogramas-tab" data-bs-toggle="tab" data-bs-target="#pictogramas" type="button"
-                role="tab" aria-controls="colores" aria-selected="false"> <img src="img/colores.png" width="30"></img>
-                Mis pictogramas</button>
-            </li>
-           
-            <li class="nav-item" role="presentation">
-              <button class="nav-link" id="add-categoria-tab" data-bs-toggle="modal" data-bs-target="#addCategoriasModal"
-                type="button" role="tab" aria-controls="addCategorias" aria-selected="false"> 
-                <img src="img/colores.png" width="30"> Añadir Categoria
-              </button>
-            </li>
-          </ul>
-  
+            
           <div class="container mt-4">
             <div class="row" id="categoriaUsuario"></div>
           </div>
@@ -192,9 +177,9 @@
     </div>
   </section>
 
-
           <!-- FIN GEBERAL-->
-          <div class="tab-content" id="myTabContent">
+          <div id="categorias">
+          <div class="tab-content">
             <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
               <div class="container mt-4">
                 <div class="row">
@@ -287,8 +272,8 @@
           <!--FIN GENERAL-->
 
           <!-- FIN ACCIONES-->
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="acciones" role="tabpanel" aria-labelledby="acciones">
+          <div class="tab-content">
+            <div class="tab-pane fade " id="acciones" role="tabpanel" aria-labelledby="acciones">
               <div class="container mt-4">
                 <div class="row">
                   <!-- Crea un botón para cada palabra -->
@@ -380,8 +365,8 @@
           <!--FIN ACCIONES-->
 
           <!-- FIN PERSONAS-->
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="personas" role="tabpanel" aria-labelledby="personas">
+          <div class="tab-content">
+            <div class="tab-pane fade " id="personas" role="tabpanel" aria-labelledby="personas">
               <div class="container mt-4">
                 <div class="row">
                   <!-- Crea un botón para cada palabra -->
@@ -455,8 +440,8 @@
 
 
           <!-- INICIO COMIDA  -->
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="comida" role="tabpanel" aria-labelledby="comida-tab">
+          <div class="tab-content" >
+            <div class="tab-pane fade " id="comida" role="tabpanel" aria-labelledby="comida-tab">
               <div class="container mt-4">
                 <div class="row">
                   <!-- Crea un botón para cada palabra -->
@@ -547,8 +532,8 @@
           <!--FIN COMIDA-->
 
           <!-- INICIO EMOCIONES -->
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="emociones" role="tabpanel" aria-labelledby="emociones-tab">
+          <div class="tab-content">
+            <div class="tab-pane fade " id="emociones" role="tabpanel" aria-labelledby="emociones-tab">
               <div class="container mt-4">
                 <div class="row">
                   <!-- Crea un botón para cada palabra -->
@@ -620,8 +605,8 @@
 
 
           <!-- INICIO lugares -->
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="lugares" role="tabpanel" aria-labelledby="lugares-tab">
+          <div class="tab-content" >
+            <div class="tab-pane fade " id="lugares" role="tabpanel" aria-labelledby="lugares-tab">
               <div class="container mt-4">
                 <div class="row">
                   <!-- Crea un botón para cada palabra -->
@@ -692,8 +677,8 @@
           <!--FIN lugares-->
 
           <!-- INICIO COLORES -->
-          <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="colores" role="tabpanel" aria-labelledby="colores-tab">
+          <div class="tab-content" >
+            <div class="tab-pane fade " id="colores" role="tabpanel" aria-labelledby="colores-tab">
               <div class="container mt-4">
                 <div class="row">
                   <!-- Crea un botón para cada palabra -->
@@ -764,67 +749,49 @@
           <!--FIN COLORES-->
 
              <!-- INICIO COLORES -->
-             <div class="tab-content" id="myTabContent">
+             <div class="tab-content" id="pictogramas">
               <div class="tab-pane fade show active" id="pictogramas" role="tabpanel" aria-labelledby="pictogramas-tab">
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPictogramas">
-               Añadir pictogramas
-                </button>
-          
                 <div class="container mt-4">
                   <div class="row" id="pictoUsuario">
-                    
                   </div>
-  </section>
+                </div>
+              </div>
+                </div>
 
-  <!-- <form class="modal fade" id="addCategorias" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir Nueva Categoria</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">        
-            <div class="mb-3">
-              <label for="itemName" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nombreC" name="itemName" >
-            </div>   
-            <div class="mb-3">
-              <label for="itemName" class="form-label">Descripción de la categoria</label>
-              <input type="text" class="form-control" id="descripcion" name="itemName">
-            </div>     
-                 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary">Guardar cambios</button>
-        </div>
-      </div>
-    </div>
-  </form> -->
-  
+  </section>
+    
+
+ 
   <form class="modal fade" id="addPictogramas" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <p class="text-danger">Tenga en cuenta que los pictogramas subidos serán revisados por un administrador,No se permiten imagenes con contenido sensible y/o violento en dicho caso se eliminaran y no podra hacer uso de ellos </p>
-      <div class="modal-content">
+      
+      <div class="modal-content"><p class="text-danger m-4">Tenga en cuenta que los pictogramas subidos serán revisados por un administrador, No se permiten imágenes con contenido sensible y/o violento; en dicho caso, se eliminarán y no podrá hacer uso de ellos</p>
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir Nuevo Elemento</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">        
             <div class="mb-3">
-              <label for="itemName" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="nombre" name="itemName" required value="hola">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="nombre" name="itemName" required>
             </div>
             <div class="mb-3">
-              <label for="itemName" class="form-label">Texto a reproducir</label>
-              <input type="text" class="form-control" id="audio" name="audio" required value="hola">
+              <label for="audio" class="form-label">Texto a reproducir</label>
+              <input type="text" class="form-control" id="audio" name="audio" required>
             </div>
-            
             <div class="mb-3">
-              <label for="itemImage" class="form-label">Imagen</label>
-              <p class="text-muted text-danger ">Tamaño maximo de archivo 5Mb</p>
-
+              <label for="categoriaID" class="form-label">Seleccionar Categoría</label>
+              <select class="form-control" id="categoriaID" name="categoriaID" required>
+                <option value="">Selecciona una categoría</option>
+                <?php foreach ($categorias as $categoria): ?>
+                  <option value="<?= $categoria['categoriaID'] ?>"><?= $categoria['nombre'] ?></option>
+                <?php endforeach; ?>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="imagen" class="form-label">Imagen</label>
+              <p class="text-muted text-danger">Tamaño máximo de archivo 5Mb</p>
               <input class="form-control" type="file" id="imagen" name="imagen" accept="image/*" required>
             </div>          
         </div>
@@ -835,26 +802,20 @@
       </div>
     </div>
   </form>
-  
 
-  </div>
-  <!--INICIO FOOTER-->
-  <footer class="container-fluid bg-dark text-lefts text-light px-5 pt-2">
-    <div class="text-left p-3">
-      <p>Todos los Derechos reservadors &copy; 2024 | Made with by <i class="fa-regular fa-heart"></i> <span
-          class="text-warning">Silvia Tovar Herrera</span></p>
-    </div>
-  </footer>
-  <!--FIN FOOTER-->
 
+ 
   <script>
     $(document).on('click', '.boton-palabra', function(element) {
+      console.log(element)
       const utterance = new SpeechSynthesisUtterance(element.currentTarget.attributes['data-palabra'].value);
           window.speechSynthesis.speak(utterance);
           
-    console.log('TEST', element);
+
   }) ;
   </script>
+  <script defer src="./js/leerFrase.js"></script>
+  <script defer src="./js/picto.js"></script>
 </body>
 
 </html>

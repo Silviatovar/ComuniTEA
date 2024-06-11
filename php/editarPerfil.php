@@ -22,7 +22,7 @@ $stmt->bind_param("sssi", $username, $email, $pass, $_SESSION['usuario_id']);
 
 if ($stmt->execute()) {
     echo "Perfil actualizado correctamente.";
-    header("Location: ../pinicio.html");
+    header("Location: ../pinicio.php");
 } else {
     echo "Error al actualizar el perfil: " . $stmt->error;
 }

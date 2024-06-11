@@ -4,6 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <?php include 'nav.php'; ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.0.0/uicons-brands/css/uicons-brands.css">
     <link rel="stylesheet"
@@ -29,7 +30,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   
     <link rel="stylesheet" href="css/estilo.css">
-    <?php include 'nav.php'; ?>
+ 
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -38,16 +39,16 @@
     <div id="carouselExampleFade" class="carousel slide carousel-fade " data-ride="carousel">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="carrousel/ (5).jpg" class="d-block w-100" alt=" ">
+                <img src="carrousel/(3).jpg" class="d-block w-100" alt=" ">
             </div>
             <div class="carousel-item">
-                <img src="carrousel/ (3).jpg" class="d-block w-100" alt="...">
+                <img src="carrousel/(1).jpg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="carrousel/ (1).jpg" class="d-block w-100" alt="...">
+                <img src="carrousel/(2).jpg" class="d-block w-100" alt="...">
             </div>
             <div class="carousel-item">
-                <img src="carrousel/ (4).jpg" class="d-block w-100" alt="...">
+                <img src="carrousel/(4).jpg" class="d-block w-100" alt="...">
             </div>
 
         </div>
@@ -63,7 +64,6 @@
 
     <!--INICIO SECCIÓN1-->
     <div class="flex-grow-1">
-        <button class="center" onclick="iniciarTour()">Iniciar Tour</button>
         <div class="container my-5 py-5 card card-header">
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item card">

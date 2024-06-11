@@ -26,11 +26,12 @@
 }
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: rgb(210, 230, 247);
+    background-color: rgb(241, 228, 212);/* Color de fondo */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
 }
+
 
 
 
@@ -82,3 +83,5 @@ footer {
     padding: 10px 0;
     margin-top: auto;
 }
+
+	

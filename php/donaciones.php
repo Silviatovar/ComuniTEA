@@ -18,6 +18,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $monto = $_POST["monto"];
     $mensaje = $_POST["mensaje"];
 
+      // Validar los campos
+      if (empty($nombre) || empty($email) || empty($monto) || empty($mensaje)) {
+        die("Por favor, completa todos los campos.");
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        die("Por favor, introduce una dirección de correo electrónico válida.");
+    }
+
+    if (!is_numeric($monto) || $monto <= 0) {
+        die("Por favor, introduce un monto válido.");
+    }
+
+
     // Buscar el usuario por correo electrónico
     $sql_buscar_usuario = "SELECT usuarioID FROM usuario WHERE email = ?";
     $stmt_buscar_usuario = $conn->prepare($sql_buscar_usuario);
@@ -34,9 +48,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // El usuario existe, obtener su usuarioID
         $stmt_buscar_usuario->bind_result($usuarioID);
         $stmt_buscar_usuario->fetch();
+        
+        // Redirigir a la página de inicio sin cerrar la sesión
+        header("Location: ../pinicio.php");
+        exit();
     } else {
         // El usuario no existe, usar el usuarioID predeterminado (0)
-        $usuarioID = 0; // Usuario por defecto
+        $usuarioID = null; // Usuario por defecto
     }
 
     $stmt_buscar_usuario->close();
@@ -57,12 +75,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt_insertar_donacion->close();
 
-    header("Location: ../pinicio.html");
-    exit();
+    // Redirigir a la página de inicio
+    
+    header("Location: ../pinicio.php");
+    
 } else {
     echo "Error al enviar el formulario";
-    exit();
+   
 }
-
+ exit();
 $conn->close();
 ?>

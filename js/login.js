@@ -11,7 +11,7 @@ $(document).ready(function(){
             success: function(response){
                 console.log(response);
                 if (response.trim() === "Inicio de sesión exitoso.") {
-                    window.location.href = '../pinicio.html'; 
+                    window.location.href = '../pinicio.php'; 
 
                 } else {
              

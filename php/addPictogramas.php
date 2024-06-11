@@ -15,16 +15,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $audio = $_POST['audio'];
     $nombre = $_POST['nombre'];
     $imagen = $_POST['imagen'];
-    
+    $categoriaID = $_POST['categoriaID'];
+
     try {
-        $sql = "INSERT INTO pictograma (nombre, audioURL, imagenURL, usuarioID) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO pictograma (nombre, audioURL, imagenURL,categoriaID ,usuarioID ) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssi", $nombre, $audio, $imagen, $_SESSION['usuario_id']); 
+        $stmt->bind_param("ssssi", $nombre, $audio, $imagen,$categoriaID ,$_SESSION['usuario_id']); 
 
         if ($stmt->execute()) {
             echo "Registro exitoso";
         } else {
-            echo "Error en el registro: " . $conn->error;
+            echo "Error en el registro: " . $stmt->error;
         }
 
         $stmt->close();
