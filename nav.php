@@ -1,3 +1,9 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$rol = isset($_SESSION['rol']) ? $_SESSION['rol'] : 'invitado';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/administracion.css">
     <title>Document</title>
 </head>
@@ -36,22 +42,22 @@
                         <li class="nav-item" data-rol="invitado">
                             <a class="nav-link active" aria-current="page" href="registro.php">Registrate</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-rol="invitado" data-rol="usuario" data-rol="administrador">
                             <a class="nav-link active" aria-current="page" href="proyecto.php">APP COMUNITEA</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-rol="invitado" data-rol="usuario">
                             <a class="nav-link active" aria-current="page" href="donaciones.php">Donaciones</a>
                         </li>
                         <li class="nav-item" data-rol="usuario">
                             <a class="nav-link active" aria-current="page" href="editarPerfil.php">Editar perfil</a>
                         </li>
-                        <li class="nav-item" data-rol="adminnistrador">
+                        <li class="nav-item" data-rol="administrador">
                             <a class="nav-link active" aria-current="page" href="administracion.php">Administracion</a>
                         </li>
                         <li class="nav-item" data-rol="usuario">
                             <a class="nav-link active" aria-current="page" href="tickets.php">Notificaciones</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" data-rol="invitado" data-rol="usuario" data-rol="administrador">
                             <a class="nav-link active" aria-current="page" href="./php/logout.php">Cerrar Sesion</a>
                         </li>
                     </ul>
@@ -64,25 +70,31 @@
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
     <script>
-        // Función para ocultar las pestañas según el rol del usuario
-        function ocultarPestañasSegunRol() {
-            // Obtener el rol del usuario desde el backend
-            var rol = "<?php echo $_SESSION['rol']; ?>";
+        // Pasar la variable PHP a JavaScript
+        // var rol = "<?php echo $rol; ?>";
 
-            // Obtener todos los elementos de lista de navegación con el atributo 'data-rol'
-            var elementosNavegacion = document.querySelectorAll('[data-rol]');
+        // // Función para ocultar las pestañas según el rol del usuario
+        // function ocultarPestañasSegunRol() {
+        //     // Obtener todos los elementos de lista de navegación con el atributo 'data-rol'
+        //     var elementosNavegacion = document.querySelectorAll('[data-rol]');
 
-            // Recorrer los elementos y ocultar aquellos que no corresponden al rol del usuario
-            elementosNavegacion.forEach(function (elemento) {
-                var rolElemento = elemento.getAttribute('data-rol');
-                if (rolElemento !== rol) {
-                    elemento.style.display = 'none'; // Ocultar elemento
-                }
-            });
-        }
+        //     // Recorrer los elementos y ocultar aquellos que no corresponden al rol del usuario
+        //     elementosNavegacion.forEach(function (elemento) {
+        //         var rolElemento = elemento.getAttribute('data-rol');
+        //         if (rol === 'administrador' && rolElemento !== 'administrador' && rolElemento !== 'proyecto' && rolElemento !== 'cerrar-sesion') {
+        //             elemento.style.display = 'none';
+        //         }
+        //         else if (rol === 'usuario' && (rolElemento === 'invitado' || rolElemento === 'administrador')) {
+        //             elemento.style.display = 'none';
+        //         }
+        //         else if (rol === 'invitado' && (rolElemento === 'usuario' || rolElemento === 'administrador')) {
+        //             elemento.style.display = 'none';
+        //         }
+        //     });
+        // }
 
         // Llamar a la función cuando el documento esté listo
-        document.addEventListener('DOMContentLoaded', ocultarPestañasSegunRol);
+        // document.addEventListener('DOMContentLoaded', ocultarPestañasSegunRol);
     </script>
 </body>
 

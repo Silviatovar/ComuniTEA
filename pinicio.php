@@ -29,7 +29,7 @@
     <script src="https://cdn.jsdelivr.net/npm/driver.js/dist/driver.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
   
-    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/nav.css">
  
 </head>
 

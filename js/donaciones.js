@@ -1,3 +1,5 @@
+shouldRedraw = true;
+var table1 = "";
 function TablaDonaciones() {
     $.ajax({
         type: 'POST',
@@ -10,7 +12,7 @@ function TablaDonaciones() {
             }
 
             // Construir la tabla utilizando DataTables
-            $('#DonacionesTable').DataTable({
+         table1=   $('#DonacionesTable').DataTable({
                 "data": data,
                 "responsive": true,
                 "columns": [
@@ -32,17 +34,95 @@ function TablaDonaciones() {
                                 return '<button type="button" class="btn btn-danger eliminarDonacionBtn" data-donacion-id="' + row.donacionID + '">Cancelar</button>';
                         }
                     }
-                ]
+                ],   lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                language: {
+                    url: "https://cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json",
+                    buttons: {
+                        copyTitle: 'Datos copiados al portapapeles',
+                        copySuccess: {
+                            _: '%d registros copiados',
+                            1: '1 registro copiado'
+                        }
+                    }
+                },
+                dom: 'lBfrtip',
+                buttons: [
+                    'copy', 'excel', 'csv', 'pdf', 'print',
+                    {
+                        text: 'Filtros',
+                        action: function (e, dt, node, config) {
+                            shouldRedraw = false;
+                            var filters = table1.settings()[0].aoPreSearchCols;
+                            dt.columns().every(function (index) {
+                                var filterVal = filters[index].sSearch;
+                                if (filterVal) {
+                                    $('#filtro-' + index).val(filterVal);
+                                }
+                            });
+                            $('.filter-row').toggle();
+                            setTimeout(() => {
+                                table1.draw(true)
+                            }, 10);
+                        }
+                    }
+                ],
+                drawCallback: function (settings) {
+                    var api = this.api();
+                    var headerWidths = [];
+                    $('th', api.table().header()).each(function () {
+                        headerWidths.push($(this).width());
+                    });
+                    if (shouldRedraw) {
+                        $('.filter-row').empty();
+                        var filterRow = $('<tr class="filter-row"></tr>');
+                        $(api.table().header()).append(filterRow);
+                        api.columns().every(function (index) {
+                            if (index != api.columns().count()) {
+                                var column = this;
+                                var header = $(column.header());
+                                var filterCell = $('<th class="text-center"></th>');
+                                filterRow.append(filterCell);
+                                var filterInput = $('<input type="text" placeholder="' + header.text() + '" class="form-control form-control-sm mb-2">');
+                                filterCell.append(filterInput);
+                                filterInput.css({
+                                    'margin': '0',
+                                    'box-sizing': 'border-box',
+                                    'padding': '0',
+                                    'text-align': 'center',
+                                    'width': headerWidths[index] + 'px'
+                                });
+                                var timeoutId;
+                                filterInput.on('input', function () {
+                                    clearTimeout(timeoutId);
+                                    timeoutId = setTimeout(function () {
+                                        column.search(filterInput.val()).draw();
+                                    }, 100);
+                                });
+                                $('button', filterCell).on('click', function () {
+                                    filterInput.val('');
+                                    filterInput.trigger('input');
+                                });
+                            }
+                        });
+                    } else {
+                        $('input', api.table().header()).each(function (index) {
+                            $(this).css('width', headerWidths[index] + 'px');
+                        });
+                    }
+                    shouldRedraw = false;
+                },
+                initComplete: function (settings, json) {
+                    $('.filter-row').hide();
+                }
             });
-
-            $('#DonacionesTable_wrapper').append('<div class="alert alert-success" role="alert">Gracias por apoyar a ComuniTEA. Tu donación se ha realizado con éxito.</div>');
         },
         error: function (xhr, status, error) {
-            console.log(xhr.responseText);
-            alert('Error al cargar la tabla de donaciones. Detalles: ' + xhr.responseText);
+            console.error(xhr.responseText);
+            alert("Error al cargar los pictogramas. Detalles: " + xhr.responseText);
         }
     });
 }
+
 
 // Llamar a la función cuando la página esté lista
 $(document).ready(function () {

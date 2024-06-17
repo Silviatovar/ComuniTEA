@@ -23,7 +23,6 @@ $usuarioID = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : '';
   <script defer src="./js/generalScript.js"></script>
   <script defer src="./js/addPictogramas.js"></script>
   <script defer src="./js/addCategorias.js"></script>
-
   <script defer src="./js/categoriaUsuario.js"></script>
 
   <title>Document</title>
@@ -31,7 +30,7 @@ $usuarioID = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : '';
 
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-90">
 
   <!-- INICIO APRENDE1-->
   <div class="bloque1 d-flex p-2 flex-column  mb-3 justify-content-center align-items-center pt-5 pb-5">

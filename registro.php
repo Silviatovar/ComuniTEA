@@ -17,7 +17,7 @@ if (empty($_SESSION['csrf_token'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Graduate&family=Pacifico&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/editarPerfil.css">
+    <link rel="stylesheet" href="css/estilos_generales.css">
     <script src="https://cdn.jsdelivr.net/npm/driver.js/dist/driver.min.js"></script>
     <title>Registro</title>
 </head>

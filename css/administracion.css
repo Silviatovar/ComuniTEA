@@ -17,7 +17,7 @@ Estilos generales
 }
 
 .nav-link {
-    color: #5185bc;
+    color: #000000;
     transition: color 0.3s ease;
 }
 
@@ -26,7 +26,7 @@ Estilos generales
 }
 body {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    background-color: rgb(210, 230, 247);
+    background-color: rgb(241, 228, 212);/* Color de fondo */
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -53,18 +53,22 @@ body {
     height: 70%;
     object-fit: cover;
 }
+.dt-button {
+    background-color: snow;
+   
+}
 
 /* Estilos del accordion */
 .accordion-button {
-    background-color: #007bff;
+    background-color: #cfc4b8;
     border: 1px solid #b4acac;
     border-radius: 5px;
     color: #ffffff;
 }
 
 .accordion-body {
-    background-color: #d9e4f2;
-    border: 1px solid #b9bfbf;
+    background-color: #ffffff;
+    border: 1px solid #00d6d6;
     border-radius: 5px;
     padding: 10px; 
 }
@@ -72,13 +76,13 @@ body {
 /* Estilos del footer */
 
 a {
-    color: #3082da;
+    color: #000000;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 a:hover {
-    color: #0a497b;
+    color: #204a6c;
 }
 footer {
     background-color: #43474b;

@@ -1,7 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
+$servername = "mysql.webcindario.com";
+$username = "comunitea";
+$password = "comunitea";
 $dbname = "comunitea";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -15,7 +15,7 @@ $sql_usuario = "
         usuarioID INT NOT NULL AUTO_INCREMENT,
         nombre VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL,
-        contraseña VARCHAR(255) NOT NULL,
+        contrasena VARCHAR(255) NOT NULL,
         rol ENUM('usuario','administrador') NOT NULL,
         PRIMARY KEY (usuarioID),
         UNIQUE KEY email (email)
@@ -48,7 +48,7 @@ if ($conn->query($sql_categoria) === TRUE) {
 $sql_pictograma = "
 CREATE TABLE IF NOT EXISTS pictograma (
     pictogramaID INT NOT NULL AUTO_INCREMENT,
-    imagenURL VARCHAR(255) NOT NULL,
+    imagenURL LONGTEXT NOT NULL,
     nombre VARCHAR(255) NOT NULL,
     audioURL VARCHAR(255),
     categoriaID INT,
