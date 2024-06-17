@@ -48,6 +48,7 @@ $usuarioID = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : '';
   <style>#frase {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
+    gap: 10px;
     
 }
 
@@ -69,6 +70,32 @@ $usuarioID = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : '';
 
 .pictograma {
   margin-right: 10px; /* Espacio entre los pictogramas */
+}
+#pictogramas > div {
+  display: flex;
+  justify-content: center;
+}
+
+.boton-palabra img{
+  width: 150px !important;
+  height: 150px !important;
+
+}
+
+.custom-padre {
+  display: flex;
+  justify-content: center;
+
+}
+
+.custom {
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid black;
+    background: white;
+    border-radius: 0;
+    padding: 5px 18px;
 }
 </style> <div class="text-center">
 <button class="btn " id="leerFrase">

@@ -13,12 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $descripcion = $_POST['descripcion'];
 
     // Conexión a la base de datos
-    $host = "localhost";
+    $servername = "mysql.webcindario.com";
+    $username = "comunitea";
+    $password = "comunitea";
     $dbname = "comunitea";
-    $user = "root";
-    $password = "";
-
-    $conn = new mysqli($host, $user, $password, $dbname);
+    
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     // Verificar la conexión
     if ($conn->connect_error) {

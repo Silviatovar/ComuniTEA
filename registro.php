@@ -82,10 +82,10 @@ if (empty($_SESSION['csrf_token'])) {
         </div>
     </footer>
 
-    <link rel="stylesheet" href="./css/driverPopover.css">
+ 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/driver.js@1.0.1/dist/driver.css">
     <script defer src="./js/registro.js"></script>
-    <script src="/js/tourPinicio.js"></script>
+
     <script>
         // Validación de formulario y términos y condiciones
         document.getElementById('registroForm').addEventListener('submit', function(event) {

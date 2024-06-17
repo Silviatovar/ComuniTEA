@@ -1,12 +1,11 @@
 <?php
 session_start();
-
-$host = "localhost";
+$servername = "mysql.webcindario.com";
+$username = "comunitea";
+$password = "comunitea";
 $dbname = "comunitea";
-$user = "root";
-$password = "";
 
-$conn = new mysqli($host, $user, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);

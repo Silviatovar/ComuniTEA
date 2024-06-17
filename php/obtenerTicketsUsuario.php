@@ -4,14 +4,12 @@ $usuarioID = isset($_SESSION['usuario_id']) ? $_SESSION['usuario_id'] : '';
 $username = isset($_SESSION['nombre']) ? $_SESSION['nombre'] : '';
 $email = isset($_SESSION['email']) ? $_SESSION['email'] : '';
 
-// Conexión a la base de datos (ajusta estos valores según tu configuración)
-$servername = "127.0.0.1";
-$database = "comunitea";
-$username_db = "root";
-$password_db = "";
+$servername = "mysql.webcindario.com";
+$username = "comunitea";
+$password = "comunitea";
+$dbname = "comunitea";
 
-// Crear conexión
-$conn = new mysqli($servername, $username_db, $password_db, $database);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
 // Verificar conexión
 if ($conn->connect_error) {

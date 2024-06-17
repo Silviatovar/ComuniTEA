@@ -1,11 +1,11 @@
 <?php
     // Conexión a la base de datos
-    $servername = "127.0.0.1";
-    $database = "comunitea";
-    $username = "root";
-    $password = "";
-
-    $conn = new mysqli($servername, $username, $password, $database);
+    $servername = "mysql.webcindario.com";
+    $username = "comunitea";
+    $password = "comunitea";
+    $dbname = "comunitea";
+    
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
